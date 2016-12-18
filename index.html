@@ -17,7 +17,7 @@
     class App extends React.Component {
       render() {
         return (
-          <div className="notificationsFrame">
+          <div className="notificationsFrame page-wrap page-wrap-s">
             <div className="panel">
               <Header title="Timeline" />
               <Content activities={activities} />
@@ -53,28 +53,41 @@
         }
 
         return (
-          <div className="header">
-            <div className="fa fa-bars"></div>
+          <div className="header padding-s">
+            <div className="grid grid-3">
 
-            <span className="title">
-              {this.props.title}
-            </span>
+              <div className="fa fa-bars"></div>
 
-            <input
-              type="text"
-              className={searchInputClasses.join(' ')}
-              placeholder="Search ..." />
+              <div className="title text-align-center font-weight-9 text-transform-uppercase">
+                {this.props.title}
+              </div>
 
-            {/* Adding an onClick handler to call the showSearch button */}
-            <div
-              onClick={this.showSearch.bind(this)}
-              className="fa fa-search searchIcon"></div>
+              <div className="text-align-right">
+                <input
+                  type="text"
+                  className={"input input-default input-s " + searchInputClasses.join(' ')}
+                  placeholder="Search ..." />
+
+                {/* Adding an onClick handler to call the showSearch button */}
+                <div
+                  onClick={this.showSearch.bind(this)}
+                  className="float-right fa fa-search searchIcon"></div>
+              </div>
+            </div>
           </div>
         )
       }
     }
 
     class Content extends React.Component {
+      constructor(props) {
+        super(props);
+
+        this.state = {
+          activities: []
+        }
+      }
+
       render() {
         const {activities} = this.props; // ES6 destructuring
 
@@ -91,6 +104,7 @@
         )
       }
     }
+
     class ActivityItem extends React.Component {
       render() {
         const {activity} = this.props; // ES6 destructuring
