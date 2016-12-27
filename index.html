@@ -88,6 +88,10 @@
         }
       }
 
+      componentWillMount() {
+        this.setState({activities: data});
+      }
+
       render() {
         const {activities} = this.props; // ES6 destructuring
 
@@ -100,11 +104,13 @@
               <ActivityItem
                 activity={activity} />
             ))}
+
           </div>
         )
       }
     }
 
+    // Data item component
     class ActivityItem extends React.Component {
       render() {
         const {activity} = this.props; // ES6 destructuring
@@ -128,6 +134,16 @@
       }
     }
 
+    /*const data = https://api.github.com/users/zweiland/events
+
+    UserList() {
+      return $.getJSON('https://randomuser.me/api/')
+        .then((data) => {
+          this.setState({ person: data.results });
+        });
+    }*/
+
+    // Manual activities data
     const activities = [
       {
         timestamp: new Date().getTime(),
@@ -148,6 +164,7 @@
         comments: [{ from: 'Nate', text: 'I am so jealous' }]
       },
     ]
+
     var mount = document.querySelector('#app');
     ReactDOM.render(<App />, mount);
 
